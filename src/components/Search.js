@@ -1,23 +1,24 @@
 import React, { useState } from 'react';
 
 const Search = (props) => {
-    const [login, setLogin] = useState('');
+    const [username, setUsername] = useState('');
 
     const handleOnChange = ({ target }) => {
-        setLogin(target.value)
+        setUsername(target.value)
     }
 
     const handleOnSubmit = (e) => {
         e.preventDefault();
-        props.getsLogin(login);
+        props.getUsers(username);
     }
 
     return (
         <form onSubmit={handleOnSubmit}>
             <input
             type='search'
-            value={login}
-            name='login'
+            value={username}
+            name='username'
+            placeholder='Enter a github username'
             onChange={handleOnChange}/>
 
             <button type='submit'>Search</button>
