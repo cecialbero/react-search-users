@@ -3,7 +3,7 @@ import axios from 'axios';
 import Search from './components/Search';
 import Results from './components/Results';
 
-import './App.css';
+import './App.scss';
 
 const App = () => {
   const [ users, setUsers ] = useState([])
@@ -21,10 +21,10 @@ const App = () => {
   }
 
   return (
-    <>
+    <section>
       <Search getUsers={getUsers}/>
       <Results users={users}/>
-    </>
+    </section>
   );
 }
 
