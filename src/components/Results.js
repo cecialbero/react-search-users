@@ -1,6 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import UsersContext from './../context/Users/usersContext';
 
-const Results = ({ users }) => {
+const Results = () => {
+    const usersContext = useContext(UsersContext);
+    const { users } = usersContext;
+
     return (
         <table>
             <tbody>

@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import UsersContext from './../context/Users/usersContext';
 
-const Search = (props) => {
+const Search = () => {
+    const usersContext = useContext(UsersContext);
     const [username, setUsername] = useState('');
 
     const handleOnChange = ({ target }) => {
@@ -9,16 +11,18 @@ const Search = (props) => {
 
     const handleOnSubmit = (e) => {
         e.preventDefault();
-        props.getUsers(username);
+        usersContext.getUsers(username);
+        setUsername('');
     }
 
     return (
-        <form onSubmit={handleOnSubmit}>
+        <form className='search-container' onSubmit={handleOnSubmit}>
             <input
             type='search'
             value={username}
             name='username'
             placeholder='Enter a github username'
+            arial-label='Enter a github username'
             onChange={handleOnChange}/>
 
             <button type='submit'>Search</button>
