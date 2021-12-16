@@ -12,7 +12,14 @@ const Results = () => {
     return (
         <>
             {
-                users.length != 0 && <table>
+                users.length != 0 && <table cellPadding='0' cellSpacing='0'>
+                    <thead>
+                        <tr>
+                            <td>Avatar Url</td>
+                            <td>Login</td>
+                            <td>Type</td>
+                        </tr>
+                    </thead>
                     <tbody>
                     {
                         users.map(user => {

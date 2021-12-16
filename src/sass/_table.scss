@@ -3,4 +3,21 @@ table {
     width: 100%;
     border-radius: 4px;
     padding: 20px 24px;
+
+    thead {
+        td {
+            border-bottom: 1px solid darkgray;
+            padding: 5px 10px;
+        }
+    }
+
+    tr {
+        &:nth-of-type(even) {
+            background-color: #ebe8e8;
+        }
+    }
+
+    td {
+        padding: 15px 10px;
+    }
 }
