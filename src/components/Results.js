@@ -7,12 +7,10 @@ const Results = () => {
     const usersContext = useContext(UsersContext);
     const { users } = usersContext;
 
-    console.log(users)
-
     return (
         <>
             {
-                users.length != 0 && <table cellPadding='0' cellSpacing='0'>
+                users.length !== 0 && <table cellPadding='0' cellSpacing='0'>
                     <thead>
                         <tr>
                             <td>Avatar Url</td>
