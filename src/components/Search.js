@@ -25,7 +25,7 @@ const Search = () => {
             arial-label='Enter a github username'
             onChange={handleOnChange}/>
 
-            <button type='submit'>Search</button>
+            <button type='submit'>Submit</button>
         </form>
     )
 }
