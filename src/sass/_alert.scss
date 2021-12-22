@@ -1,9 +1,12 @@
 .alert {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
     position: fixed;
     top: 15px;
     left: 50%;
     transform: translateX(-50%);
-    max-width: 500px;
+    max-width: 450px;
     width: 100%;
     padding: 15px 20px;
     border-radius: 6px;
@@ -11,5 +14,11 @@
     &-info {
         background: lightcyan;
         border: 1px solid lightblue;
+    }
+
+    i.fas {
+        color: #95c4d3;
+        font-size: 23px;
+        margin-right: 10px
     }
 }
