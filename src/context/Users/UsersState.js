@@ -1,8 +1,8 @@
 import React, { useReducer } from 'react';
 import axios from 'axios';
-import { GET_USERS } from './../types';
 import UsersContext from './usersContext';
 import UsersReducer from './usersReducer';
+import { GET_USERS } from './../types';
 
 const UsersState = props => {
     const initialState = {

@@ -1,8 +1,10 @@
 import React, { useState, useContext } from 'react';
+import AlertContext from './../context/Alert/alertContext';
 import UsersContext from './../context/Users/usersContext';
 
 const Search = () => {
     const usersContext = useContext(UsersContext);
+    const alertContext = useContext(AlertContext);
     const [username, setUsername] = useState('');
 
     const handleOnChange = ({ target }) => {
@@ -11,8 +13,12 @@ const Search = () => {
 
     const handleOnSubmit = (e) => {
         e.preventDefault();
-        usersContext.getUsers(username);
-        setUsername('');
+        if(username === '') {
+            alertContext.setAlert('Please, enter a github username', 'info');
+        } else {
+            usersContext.getUsers(username);
+            setUsername('');
+        }
     }
 
     return (
