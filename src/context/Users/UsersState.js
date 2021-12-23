@@ -15,7 +15,8 @@ const UsersState = props => {
     const getUsers = async username => {
         setLoading();
 
-        const res = await axios.get(`https://api.github.com/search/users?q=${username}&client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET} in:login&per_page=9`);
+        const res = await axios.get(`https://api.github.com/search/users?q=${username}&client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET} in:login`);
+
         dispatch({ type: GET_USERS, payload: res.data.items });
     }
 

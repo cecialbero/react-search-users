@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { useTable, useSortBy } from 'react-table';
+import { useTable, useSortBy, usePagination } from 'react-table';
 import UsersContext from './../context/Users/usersContext';
 import Spinner from './../layout/Spinner';
 
@@ -45,13 +45,21 @@ const Results = () => {
         getTableProps,
         getTableBodyProps,
         headerGroups,
-        rows,
         prepareRow,
-    } = useTable({ columns, data }, useSortBy)
+        page,
+        canPreviousPage,
+        canNextPage,
+        pageCount,
+        gotoPage,
+        nextPage,
+        previousPage,
+        pageOptions,
+        state: { pageIndex },
+    } = useTable({ columns, data }, useSortBy, usePagination)
 
     return (
-        
-            loading ? <div className='spinner-wrapper'><Spinner /></div>
+
+        loading ? <div className='spinner-wrapper'><Spinner /></div>
 
             :
 
@@ -64,10 +72,10 @@ const Results = () => {
                                     <th {...column.getHeaderProps(column.getSortByToggleProps())}>
                                         <p>{column.render('Header')}
                                             {column.isSorted
-                                            ? column.isSortedDesc
-                                                ? <i class="fas fa-sort-down"></i>
-                                                : <i class="fas fa-sort-up"></i>
-                                            : ''}
+                                                ? column.isSortedDesc
+                                                    ? <i className="fas fa-sort-down"></i>
+                                                    : <i className="fas fa-sort-up"></i>
+                                                : ''}
                                         </p>
                                     </th>
                                 ))}
@@ -75,22 +83,39 @@ const Results = () => {
                         ))}
                     </thead>
                     <tbody {...getTableBodyProps()}>
-                        {rows.map(row => {
+                        {page.map((row) => {
                             prepareRow(row)
                             return (
                                 <tr {...row.getRowProps()}>
                                     {row.cells.map(cell => {
-                                        return (
-                                            <td {...cell.getCellProps()}>
-                                                {cell.render('Cell')}
-                                            </td>
-                                        )
+                                        return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
                                     })}
                                 </tr>
                             )
                         })}
                     </tbody>
                 </table>
+
+                <div className="pagination">
+                    <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
+                        {'<<'}
+                    </button>{' '}
+                    <button onClick={() => previousPage()} disabled={!canPreviousPage}>
+                        {'<'}
+                    </button>{' '}
+                    <button onClick={() => nextPage()} disabled={!canNextPage}>
+                        {'>'}
+                    </button>{' '}
+                    <button onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>
+                        {'>>'}
+                    </button>{' '}
+                    <span>
+                        Page{' '}
+                        <strong>
+                            {pageIndex + 1} of {pageOptions.length}
+                        </strong>{' '}
+                    </span>
+                </div>
             </div>
     )
 }
