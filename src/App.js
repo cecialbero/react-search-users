@@ -8,13 +8,14 @@ import Alert from './layout/Alert';
 import './App.scss';
 
 const App = () => {
+  
   return (
     <UsersState>
     <AlertState>
       <section>
+        <Alert />
         <Search />
         <Results />
-        <Alert />
       </section>
     </AlertState>
     </UsersState>
