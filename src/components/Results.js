@@ -57,9 +57,6 @@ const Results = () => {
         state: { pageIndex },
     } = useTable({ columns, data, initialState: { pageSize: 9 } }, useSortBy, usePagination)
 
-    console.log(1, canNextPage)
-    console.log(2, canPreviousPage)
-
     return (
 
         loading ? <div className='spinner-wrapper'><Spinner /></div>
