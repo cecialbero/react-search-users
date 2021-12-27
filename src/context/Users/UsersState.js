@@ -4,6 +4,17 @@ import UsersContext from './usersContext';
 import UsersReducer from './usersReducer';
 import { GET_USERS, LOADING } from './../types';
 
+let githubClientId;
+let githubClientSecret;
+
+if(process.env.NODE_ENV !== 'production') {
+    githubClientId = process.env.REACT_APP_GITHUB_CLIENT_ID;
+    githubClientSecret = process.env.REACT_APP_GITHUB_CLIENT_SECRET
+} else {
+    githubClientId = process.env.GITHUB_CLIENT_ID;
+    githubClientSecret = process.env.GITHUB_CLIENT_SECRET
+}
+
 const UsersState = props => {
     const initialState = {
         users: [],
@@ -15,7 +26,7 @@ const UsersState = props => {
     const getUsers = async username => {
         setLoading();
 
-        const res = await axios.get(`https://api.github.com/search/users?q=${username}&client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET} in:login`);
+        const res = await axios.get(`https://api.github.com/search/users?q=${username}&client_id=${githubClientId}&client_secret=${githubClientSecret} in:login`);
 
         dispatch({ type: GET_USERS, payload: res.data.items });
     }
